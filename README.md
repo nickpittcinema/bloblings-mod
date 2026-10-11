@@ -53,25 +53,21 @@ a question. One click opens that thread. It also works with Codex. Free, for mac
 ## Status line
 
 Claude Code shows one status line, set in `~/.claude/settings.json`. The installed plugin keeps
-its copy of the script under a versioned folder, so copy it once to a fixed place, then point the
-setting at that copy:
-
-```bash
-cp ~/.claude/plugins/cache/bloblings/bloblings/*/statusline/bloblings-statusline.sh ~/.claude/bloblings-statusline.sh
-```
+its script under a versioned folder, so point the setting at a command that finds the newest
+installed copy each time it runs. No copy step, and it keeps working after updates:
 
 ```json
 {
   "statusLine": {
     "type": "command",
-    "command": "~/.claude/bloblings-statusline.sh"
+    "command": "bash \"$(ls -d \"$HOME\"/.claude/plugins/cache/bloblings/bloblings/*/ | sort -V | tail -1)statusline/bloblings-statusline.sh\""
   }
 }
 ```
 
 It prints `2 Bloblings waiting on you`, `1 Blobling waiting on you`, or `All Bloblings happy`.
-Plain text, no colour codes. If you already have a status line, add a call to the script to it
-instead of replacing it.
+Plain text, no colour codes. If you already have a status line, add that command to it instead
+of replacing it.
 
 ## Privacy
 
