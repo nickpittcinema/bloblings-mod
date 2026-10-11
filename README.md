@@ -1,25 +1,24 @@
 # Bloblings
 
-**A pet for every Claude Code session.** This mod shows who's waiting on you, from inside Claude Code. The free Mac app gives each session a pet at the edge of your screen.
+**A pet for every Claude Code session.** A Claude Code mod that tells you which sessions are
+waiting on you, plus a free Mac app that gives each one a little pet at the edge of your screen.
 
-<!-- Hero GIF goes here: a drawer of pets, one lights up, a click lands in the thread. -->
+<!-- Hero GIF: a drawer of pets, one lights up, a click lands in the thread. 5 to 8 s, under 5 MB. -->
 
-[**Get the Mac app, free →**](https://bloblings.app/?ref=gh)
+[**Get the free Mac app →**](https://bloblings.app/?ref=gh) · [See the one-click demo](https://bloblings.app/?ref=gh#jump)
 
-## Install
-
-Add the marketplace once, then install the plugin:
+## Install the mod
 
 ```bash
 claude plugin marketplace add nickpittcinema/bloblings-mod
 claude plugin install bloblings@bloblings
 ```
 
-Then get the app: <https://bloblings.app/?ref=gh>. The app connects itself to Claude Code the first time you open it.
+Then type **`/bloblings:status`** in any Claude Code session.
 
-## What you get
+## What it does
 
-**`/bloblings:status`** prints who's waiting on you:
+**`/bloblings:status`** shows who's waiting on you, across every session and project:
 
 ```
 2 Bloblings waiting on you.
@@ -29,29 +28,76 @@ Then get the app: <https://bloblings.app/?ref=gh>. The app connects itself to Cl
 ✓ Website polish · website · finished · 1h 2m
 ```
 
-Without the app installed, it says so and points you at the download:
+The ones that need you come first. When nothing does, it says **"All Bloblings happy."**
+
+**An optional status line.** Show "2 Bloblings waiting on you" under your prompt. Claude Code has
+one status line per user, so the mod never takes yours over: you switch it on yourself (see
+[Status line](#status-line)).
+
+## Do I need the app?
+
+**For anything to show, yes.** The mod reads the notes the Bloblings app keeps on your Mac. Without
+the app, `/bloblings:status` just says hello:
 
 ```
-   ___
-  (o o)   No Bloblings here yet.
-  /   \   Get the free Mac app, and every Claude Code session gets a pet
- (_____)  that waves when it needs you: https://bloblings.app/?ref=mod
+ ╭─────╮
+ │ ▮ ▮ │   No Bloblings here yet.
+ │  ◡  │   Get the free Mac app, and every Claude Code session gets a pet
+ ╰─┬─┬─╯   that waves when it needs you: https://bloblings.app/?ref=mod
 ```
 
-**An optional status line.** Claude Code has one status line per user, so the mod doesn't take it over. To show "2 Bloblings waiting on you" (or "All Bloblings happy") under your prompt, point your `statusLine` setting at `statusline/bloblings-statusline.sh` in the installed plugin.
+**The app** puts a drawer on the edge of your screen with a pet for every session. It types while
+the session edits, reads, hammers away at tests, and lights up when a session needs your OK or has
+a question. One click opens that thread. It also works with Codex. Free, for macOS 15 or later.
 
-**The app's hook, handled.** The mod registers the Bloblings hook for you. When the app is installed, each Claude Code event reaches it; when the app has already connected itself, the mod stays out of the way. The hook takes a few milliseconds and never blocks Claude.
+## Status line
+
+Claude Code shows one status line, set in `~/.claude/settings.json`. The installed plugin keeps
+its copy of the script under a versioned folder, so copy it once to a fixed place, then point the
+setting at that copy:
+
+```bash
+cp ~/.claude/plugins/cache/bloblings/bloblings/*/statusline/bloblings-statusline.sh ~/.claude/bloblings-statusline.sh
+```
+
+```json
+{
+  "statusLine": {
+    "type": "command",
+    "command": "~/.claude/bloblings-statusline.sh"
+  }
+}
+```
+
+It prints `2 Bloblings waiting on you`, `1 Blobling waiting on you`, or `All Bloblings happy`.
+Plain text, no colour codes. If you already have a status line, add a call to the script to it
+instead of replacing it.
 
 ## Privacy
 
-- **Read-only.** The mod reads the notes the Bloblings app keeps on your Mac and Claude Code's own session list. It writes nothing of its own.
+- **Read-only.** The mod reads the Bloblings app's notes and Claude Code's own session list on your
+  Mac. It writes nothing of its own.
 - **Local.** Nothing leaves your Mac. No accounts, no analytics, no network calls.
-- **Never approves anything.** Bloblings shows you who's waiting; you answer in Claude Code.
+- **Never approves anything.** Bloblings shows you who's waiting. You answer in Claude Code.
+- **Plays nicely with your hooks.** The mod adds the Bloblings hook beside yours. If the app has
+  already connected itself, the mod stays out of the way. The hook takes a few milliseconds and
+  never blocks Claude.
 
-## Scope
+## FAQ
 
-This mod is for Claude Code. The Mac app also works with Codex and, through a short guide, other agents. The mod is open source (MIT); the app is free and closed for now.
+**Why a mod and an app?** The mod lives inside Claude Code, so you can check from wherever you're
+typing. The app lives at the edge of your screen, so you see it while you're in another app
+entirely.
+
+**Windows or Linux?** The app is Mac only for now. Without it, the mod has nothing to show.
+
+**Is it open source?** The mod is, under MIT: everything in this repo. The app is free and closed
+for now.
+
+**Codex?** The app works with Codex. This mod is for Claude Code.
 
 ## Made by Nick Pitt
 
-© 2026 Nick Pitt. Bloblings is an independent project and is not affiliated with, endorsed by or sponsored by Anthropic. Claude and Claude Code are trademarks of Anthropic, PBC. All Bloblings are original characters.
+© 2026 Nick Pitt. Bloblings is an independent project and is not affiliated with, endorsed by or
+sponsored by Anthropic. Claude and Claude Code are trademarks of Anthropic, PBC. All Bloblings are
+original characters.
