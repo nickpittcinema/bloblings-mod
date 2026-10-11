@@ -1,0 +1,8 @@
+{
+  "name": "bloblings",
+  "description": "Bloblings: a pet for every Claude Code session, as a Claude Code mod.",
+  "owner": { "name": "Nick Pitt", "url": "https://bloblings.app" },
+  "plugins": [
+    { "name": "bloblings", "source": "./", "description": "A pet for every Claude Code session. See who's waiting on you, from inside Claude Code." }
+  ]
+}
