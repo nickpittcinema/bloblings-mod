@@ -6,10 +6,10 @@ app_present=0
 [ -d "/Applications/Bloblings.app" ] || [ -d "$HOME/Applications/Bloblings.app" ] || [ -d "$HOME/Library/Application Support/Bloblings" ] && app_present=1
 if [ "$app_present" = 0 ]; then
   cat <<'NOAPP'
-   ___
-  (o o)   No Bloblings here yet.
-  /   \   Get the free Mac app, and every Claude Code session gets a pet
- (_____)  that waves when it needs you: https://bloblings.app/?ref=mod
+ ╭─────╮
+ │ ▮ ▮ │   No Bloblings here yet.
+ │  ◡  │   Get the free Mac app, and every Claude Code session gets a pet
+ ╰─┬─┬─╯   that waves when it needs you: https://bloblings.app/?ref=mod
 NOAPP
   exit 0
 fi
