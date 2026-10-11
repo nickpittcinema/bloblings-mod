@@ -1,0 +1,9 @@
+{
+  "name": "bloblings-sensor",
+  "version": "0.1.0",
+  "description": "Bloblings exact sensor: reports permission prompts, questions and turns to the Bloblings app the moment they happen (read-only, local).",
+  "author": {
+    "name": "Nick Pitt",
+    "url": "https://bloblings.app"
+  }
+}
