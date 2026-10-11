@@ -1,0 +1,11 @@
+{
+  "name": "bloblings",
+  "displayName": "Bloblings",
+  "version": "1.0.0",
+  "description": "A pet for every Claude Code session. See who's waiting on you, from inside Claude Code.",
+  "author": { "name": "Nick Pitt", "url": "https://bloblings.app" },
+  "homepage": "https://bloblings.app/?ref=mod",
+  "repository": "https://github.com/nickpittcinema/bloblings-mod",
+  "license": "MIT",
+  "keywords": ["claude-code", "claude-code-plugin", "claude-code-mod", "macos", "bloblings", "pets"]
+}

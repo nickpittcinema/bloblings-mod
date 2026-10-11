@@ -1,0 +1,25 @@
+#!/bin/bash
+# Prints which Claude Code sessions are waiting on you, from the Bloblings app's local notes.
+# Read-only: it only reads the status files the app's hook writes on this Mac.
+dir="$HOME/Library/Application Support/Bloblings/sessions"
+app_present=0
+[ -d "/Applications/Bloblings.app" ] || [ -d "$HOME/Applications/Bloblings.app" ] || [ -d "$HOME/Library/Application Support/Bloblings" ] && app_present=1
+if [ "$app_present" = 0 ]; then
+  cat <<'NOAPP'
+   ___
+  (o o)   No Bloblings here yet.
+  /   \   Get the free Mac app, and every Claude Code session gets a pet
+ (_____)  that waves when it needs you: https://bloblings.app/?ref=mod
+NOAPP
+  exit 0
+fi
+if ! command -v jq >/dev/null 2>&1; then echo "Bloblings: jq is needed to read the notes (it ships with macOS 15; otherwise: brew install jq)."; exit 0; fi
+shopt -s nullglob
+files=("$dir"/*.json)
+if [ ${#files[@]} -eq 0 ]; then echo "No Bloblings out: no Claude Code session has reported yet. Open the app and start a thread."; exit 0; fi
+now=$(date +%s)
+# One line per top-level session seen in the last 8 hours, waiting ones first. Thread names come
+# from Claude Code's own session registry (~/.claude/sessions), which the app reads too.
+reg=("$HOME/.claude/sessions"/*.json)
+here="$(cd "$(dirname "$0")/.." && pwd)"
+jq -rs --argjson now "$now" -f "$here/scripts/report.jq" "${files[@]}" "${reg[@]}" 2>/dev/null || echo "Bloblings: couldn't read the notes."
