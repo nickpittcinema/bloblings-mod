@@ -77,7 +77,7 @@ of replacing it.
 - **Never approves anything.** Bloblings shows you who's waiting. You answer in Claude Code.
 - **Plays nicely with your hooks.** The mod adds the Bloblings hook beside yours. If the app has
   already connected itself, the mod stays out of the way. The hook takes a few milliseconds and
-  never blocks Claude.
+  never slows Claude down. It only turns away a new helper if you've set a limit in the app.
 
 ## FAQ
 
