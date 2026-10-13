@@ -92,6 +92,7 @@ The download's SHA-256 should match the one listed here (`shasum -a 256 Blobling
 
 | Version | SHA-256 of the .dmg |
 |---|---|
+| 1.0.19 | `41367d0c2743567cdc3bc1a8245e6a7829f6ead7f03e6ec7ef95fd00109df477` |
 | 1.0.18 | `2007ff01c51800cdf8a68289f5e5875c605e4c1afdf6cf3edb8ed4dc998940af` |
 
 If either doesn't match, don't open it, and please open an issue here.
