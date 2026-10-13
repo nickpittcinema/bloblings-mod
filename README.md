@@ -79,6 +79,23 @@ of replacing it.
   already connected itself, the mod stays out of the way. The hook takes a few milliseconds and
   never slows Claude down. It only turns away a new helper if you've set a limit in the app.
 
+## Check your download
+
+The Mac app is signed with Nick Pitt's Apple Developer ID and notarised by Apple. Before you open
+it, you can check that your copy is the real one. Its signing team must be **3Q6R3YFMWP**:
+
+```bash
+codesign -dv /Applications/Bloblings.app 2>&1 | grep TeamIdentifier
+```
+
+The download's SHA-256 should match the one listed here (`shasum -a 256 Bloblings-*.dmg`):
+
+| Version | SHA-256 of the .dmg |
+|---|---|
+| 1.0.18 | `2007ff01c51800cdf8a68289f5e5875c605e4c1afdf6cf3edb8ed4dc998940af` |
+
+If either doesn't match, don't open it, and please open an issue here.
+
 ## FAQ
 
 **Why a mod and an app?** The mod lives inside Claude Code, so you can check from wherever you're
