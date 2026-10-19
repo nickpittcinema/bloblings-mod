@@ -101,6 +101,10 @@ The download's SHA-256 should match the one listed here (`shasum -a 256 Blobling
 
 If either doesn't match, don't open it, and please open an issue here.
 
+## Found a bug or want a feature?
+
+Email [hello@bloblings.app](mailto:hello@bloblings.app), or [open an issue](https://github.com/nickpittcinema/bloblings-mod/issues).
+
 ## FAQ
 
 **Why a mod and an app?** The mod lives inside Claude Code, so you can check from wherever you're
